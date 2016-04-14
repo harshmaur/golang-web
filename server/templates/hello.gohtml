@@ -6,7 +6,13 @@
         <link rel="stylesheet" href="../static/css/default.css">
     </head>
     <body>
-        <h1>Hello</h1>
+        <h1>Hello {{.Name}}</h1>
+        <ul>
+            {{range .People}}
+            <li>{{.}}</li>
+            {{end}}
+        </ul>
+        <h2>{{if .Male}}Male{{else}}Female{{end}}</h2>
         <img src="../static/images/image.jpg" alt="Image" />
     </body>
 </html>
