@@ -147,7 +147,16 @@ func main() {
 	// serve css and images
 	mux.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 
-	http.ListenAndServe(":8080", mux)
+	// http.ListenAndServe(":8080", mux)
+	// http.ListenAndServeTLS(":10443", "cert.pem", "key.pem", mux) // https
+
+	err := http.ListenAndServeTLS(":10443", "c1ert.pem", "key.pem", mux) // https with error handling
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Use this command to generate cert and key pem
+	// go run /usr/local/Cellar/go/1.6.1/libexec/src/crypto/tls/generate_cert.go --host=localhost
 }
 
 // func index(res http.ResponseWriter, req *http.Request) {
